@@ -1,4 +1,4 @@
-package com.viscum.device.camera.zs;
+package com.viscum.device.camera.visionzenith;
 
 import com.sun.jna.*;
 import com.sun.jna.ptr.ByteByReference;
