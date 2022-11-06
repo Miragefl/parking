@@ -2,7 +2,11 @@ package com.viscum.device.camera.visionzenith;
 
 import ch.qos.logback.core.util.TimeUtil;
 import com.sun.jna.Pointer;
+import com.viscum.common.Constants;
 import com.viscum.common.enums.CarPlateColorEnum;
+import com.viscum.common.util.DateTimeUtil;
+import com.viscum.device.Device;
+import com.viscum.model.IdentifyResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,6 +22,7 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 
     Logger logger = LoggerFactory.getLogger(VisionZenithCallback.class);
     JNADll instance = JNADll.INSTANCE;
+    private VisionZenithCameraDevice device;
 
     public CarPlateColorEnum getColor(int type) {
         switch (type) {
@@ -61,14 +66,13 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
         }
 
         if (StringUtils.isBlank(plateNo) || plateNo.contains("_无_")) {
-            plateNo = CarPlateUtil.NO_PLATE;
+            plateNo = Constants.NULL_CAR_PLATE_NO;
         }
         logger.info("车牌bytes:{}", pResult.nColor);
-        String color = getColor(pResult.nColor);
+        CarPlateColorEnum color = getColor(pResult.nColor);
         logger.info("车牌bytes:{}", color);
         String bigImage = "";
         String smallImage = "";
-        VisionZenithCameraManager device = VisionZenithCameraManager.handleDeviceMap.get(handle);
         int type = JNADll.VZ_LPRC_RESULT_TYPE.VZ_LPRC_RESULT_REALTIME.ordinal();
         if (device != null && type != eResultType) {
             LocalDateTime time = LocalDateTime.now();
@@ -92,17 +96,14 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
                     e.printStackTrace();
                 }
             }
-            GateLog msg = new GateLog();
-            msg.setParkingTime(TimeUtil.localDateTimeToStr(time,TimeUtil.FORMAT_DATETIME_FULL));
-            msg.setPassagewayCode(device.getGateNo());
+            IdentifyResult msg = new IdentifyResult();
+            msg.setParkingTime(LocalDateTime.now());
+            msg.setPassagewayCode(device.getDevice().getPassagewayCode());
             msg.setCarPlateNo(plateNo);
             msg.setCarPlateColor(color);
-            int carBodySize = CarPlateUtil.getCarBodySizeByColor(color);
-            msg.setCarBodySize(carBodySize);
             msg.setCarPhoto(bigImage);
             msg.setPlatePhoto(smallImage);
-            msg.setCreateTime(time);
-            device.dispatcher(msg, null, null, plateNo, color, carBodySize, time);
+            // device.dispatcher(msg, null, null, plateNo, color, carBodySize, time);
         }
     }
 
@@ -131,6 +132,13 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
             sb.append(ma.group());
         }
         return sb.toString();
+    }
 
+    public VisionZenithCameraDevice getDevice() {
+        return device;
+    }
+
+    public void setDevice(VisionZenithCameraDevice device) {
+        this.device = device;
     }
 }

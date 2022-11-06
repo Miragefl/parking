@@ -14,7 +14,7 @@ public class VisionZenithCameraDevice implements CameraFunction, GateFunction, S
 
 	private VisionZenithConfig config;
 
-	private VisionZenithCallback callback;
+	private VisionZenithCallback callback = new VisionZenithCallback();
 
 	private JNADll instance = JNADll.INSTANCE;
 
@@ -25,6 +25,7 @@ public class VisionZenithCameraDevice implements CameraFunction, GateFunction, S
 		config = JSON.parseObject(device.getDeviceParam(), VisionZenithConfig.class);
 		VisionZenithCameraManager.init();
 		handle = instance.VzLPRTcp_Open(config.getIp(), config.getPort(), config.getName(), config.getPassword());
+		callback.setDevice(this);
 		int result = instance.VzLPRTcp_SetPlateInfoCallBack(handle, callback, Pointer.NULL, 1);
 		log.info("设置相机回调结果 :{}", result);
 		int s = JNADll.INSTANCE.VzLPRTcp_ForceTrigger(handle);
@@ -83,5 +84,21 @@ public class VisionZenithCameraDevice implements CameraFunction, GateFunction, S
 			return -1;
 		}
 		return result;
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
+	public VisionZenithConfig getConfig() {
+		return config;
+	}
+
+	public void setConfig(VisionZenithConfig config) {
+		this.config = config;
 	}
 }
