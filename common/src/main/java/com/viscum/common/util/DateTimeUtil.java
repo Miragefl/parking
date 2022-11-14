@@ -13,41 +13,58 @@ public class DateTimeUtil {
 	/**
 	 * LocalDateTime 转 String
 	 *
-	 * @param localDateTime
-	 * @return
+	 * @param dateTime LocalDateTime日期
+	 * @return String格式日期
 	 */
-	public static String convent(LocalDateTime localDateTime) {
-		return convent(localDateTime, DATE_TIME_FULL);
+	public static String convent(LocalDateTime dateTime) {
+		return convent(dateTime, DATE_TIME_FULL);
 	}
 
 	/**
 	 * Date 转 String
-	 * @param date
-	 * @return
+	 * @param dateTime Date格式日期
+	 * @return String格式日期
 	 */
-	public static String convent(Date date) {
-		return convent(date, DATE_TIME_FULL);
+	public static String convent(Date dateTime) {
+		return convent(dateTime, DATE_TIME_FULL);
 	}
 
 	/**
 	 * String 转 Date
-	 * @param datetime
-	 * @return
+	 * @param datetime String格式日期
+	 * @return Date格式日期
 	 */
 	public static Date convent(String datetime) {
 		return convent(datetime, DATE_TIME_FULL);
 	}
 
-	public static String convent(LocalDateTime localDateTime, String format) {
-		return localDateTime.format(DateTimeFormatter.ofPattern(format));
+	/**
+	 * LocalDateTime 转 String
+	 * @param dateTime LocalDateTime格式日期
+	 * @param format 日期格式
+	 * @return String格式日期
+	 */
+	public static String convent(LocalDateTime dateTime, String format) {
+		return dateTime.format(DateTimeFormatter.ofPattern(format));
 	}
 
-	public static String convent(Date date, String format) {
+	/**
+	 * Date 转 String
+	 * @param dateTime Date格式日期
+	 * @param format 日期格式
+	 * @return String格式日期
+	 */
+	public static String convent(Date dateTime, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
-		return sdf.format(date);
+		return sdf.format(dateTime);
 	}
 
-
+	/**
+	 * String 转 Date
+	 * @param datetime String格式日期
+	 * @param format 日期格式
+	 * @return Date格式日期
+	 */
 	public static Date convent(String datetime, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		try {
@@ -55,10 +72,5 @@ public class DateTimeUtil {
 		} catch (ParseException e) {
 			return null;
 		}
-	}
-
-
-	public static void main(String[] args) {
-		convent(LocalDateTime.now());
 	}
 }
