@@ -1,11 +1,8 @@
 package com.viscum.device.camera.visionzenith;
 
-import ch.qos.logback.core.util.TimeUtil;
 import com.sun.jna.Pointer;
 import com.viscum.common.Constants;
 import com.viscum.common.enums.CarPlateColorEnum;
-import com.viscum.common.util.DateTimeUtil;
-import com.viscum.device.Device;
 import com.viscum.device.util.Helper;
 import com.viscum.model.IdentifyResult;
 import lombok.extern.slf4j.Slf4j;
