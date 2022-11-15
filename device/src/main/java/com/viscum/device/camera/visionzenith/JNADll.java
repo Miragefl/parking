@@ -2,7 +2,7 @@ package com.viscum.device.camera.visionzenith;
 
 import com.sun.jna.*;
 import com.sun.jna.ptr.ByteByReference;
-import com.viscum.device.util.DllPathUtil;
+import com.viscum.device.util.Helper;
 
 
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.List;
 public interface JNADll extends Library {
 
 	//加载TcpSDK动态库
-	String strdir = DllPathUtil.fullPath("zs", "zsSDK");
+	String strdir = Helper.fullPath("zs", "zsSDK");
 	JNADll INSTANCE = (JNADll) Native.load(strdir, JNADll.class);
 
 	/**

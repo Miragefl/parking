@@ -18,6 +18,10 @@ public class Helper {
 
 	public static boolean isWindow = Platform.isWindows() || Platform.isWindowsCE();
 
+	public static final String SEPARATOR = "/";
+	public static final String PREFIX = "libs";
+	public static final String ROOTPATH = System.getProperty("user.dir") + SEPARATOR + PREFIX + SEPARATOR;
+
 	public static final String PARK_CODE = SpringEnvironmentUtil.getProperty("ydcloudos.parkCode").toString();
 
 	public static String getImageFullPath(String plateNo, String color, LocalDateTime time) {
@@ -64,5 +68,13 @@ public class Helper {
 		}
 
 		return len;
+	}
+
+
+
+	public static String fullPath(String vendor,String libName) {
+		String path = (ROOTPATH + Platform.RESOURCE_PREFIX + SEPARATOR + vendor + SEPARATOR + System.mapLibraryName(libName)).replace("\\","/");
+		log.info("dllpath:{}",path);
+		return path;
 	}
 }
