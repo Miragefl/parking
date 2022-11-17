@@ -5,7 +5,6 @@ import com.viscum.common.Constants;
 import com.viscum.common.enums.CarPlateColorEnum;
 import com.viscum.device.util.Helper;
 import com.viscum.model.IdentifyResult;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Slf4j
+
 public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBACK {
 
 	Logger logger = LoggerFactory.getLogger(VisionZenithCallback.class);
@@ -81,6 +80,7 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 				try {
 					Pointer pBigImagePath = Helper.convertToPointer(bigImage, "UTF-8");
 					int res = instance.VzLPRTcp_ImageSaveToJpeg(pImgFull, nFullSize, pBigImagePath, 100);
+					logger.info("保存大图结果: {}", res);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,6 +90,7 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 				try {
 					Pointer pSmallImagePath = Helper.convertToPointer(smallImage, "UTF-8");
 					int res = instance.VzLPRTcp_ImageSaveToJpeg(pImgPlateClip, nClipSize, pSmallImagePath, 100);
+					logger.info("保存小图结果: {}", res);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
