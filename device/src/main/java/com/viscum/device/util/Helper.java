@@ -3,6 +3,7 @@ package com.viscum.device.util;
 import com.sun.jna.Memory;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
+import com.viscum.common.CommonConstants;
 import com.viscum.common.util.DateTimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +18,11 @@ public class Helper {
 	private static final Logger log = LoggerFactory.getLogger(Helper.class);
 
 	public static boolean isWindow = Platform.isWindows() || Platform.isWindowsCE();
+	public static final String ROOT_PATH = "libs" + File.separator;
 
-	public static final String SEPARATOR = "/";
-	public static final String PREFIX = "libs";
-	public static final String ROOTPATH = System.getProperty("user.dir") + SEPARATOR + PREFIX + SEPARATOR;
+	public static final String PARK_CODE = SpringEnvironmentUtil.getProperty(CommonConstants.CUSTOM_CONFIG + "parkCode").toString();
 
-	public static final String PARK_CODE = SpringEnvironmentUtil.getProperty("ydcloudos.parkCode").toString();
+	public static final String imagePath = SpringEnvironmentUtil.getPropertyOrDefault(CommonConstants.CUSTOM_CONFIG + "img.savePath", "~/parkSys/imageStore");
 
 	public static String getImageFullPath(String plateNo, String color, LocalDateTime time) {
 		String storePath = getImageStoreRootPath(PARK_CODE) + File.separator + PARK_CODE
@@ -36,11 +36,9 @@ public class Helper {
 	 * @return String 图片存放根路径
 	 */
 	public static String getImageStoreRootPath(String parkCode) {
+		LocalDateTime now = LocalDateTime.now();
 		String separator = File.separator;
-		Calendar calendar = Calendar.getInstance();
-		String month = (calendar.get(Calendar.MONTH) + 1 < 10) ? "0" + (calendar.get(Calendar.MONTH) + 1) : String.valueOf(calendar.get(Calendar.MONTH) + 1);
-		String day = calendar.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + calendar.get(Calendar.DAY_OF_MONTH) : String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-		String dir = (isWindow ? SpringEnvironmentUtil.getProperty("ydcloudos.img.rootPathWIN") : SpringEnvironmentUtil.getProperty("ydcloudos.img.rootPathLINUX")) + separator + calendar.get(Calendar.YEAR) + separator + month + separator + day + separator + parkCode;
+		String dir = imagePath + separator + now.getYear() + separator + now.getMonthValue() + separator + now.getDayOfMonth() + separator + parkCode;
 		File dirs = new File(dir);
 		if (!dirs.exists()) {
 			dirs.mkdirs();
@@ -71,10 +69,9 @@ public class Helper {
 	}
 
 
-
-	public static String fullPath(String vendor,String libName) {
-		String path = (ROOTPATH + Platform.RESOURCE_PREFIX + SEPARATOR + vendor + SEPARATOR + System.mapLibraryName(libName)).replace("\\","/");
-		log.info("dllpath:{}",path);
+	public static String fullPath(String vendor, String libName) {
+		String path = (ROOT_PATH + Platform.RESOURCE_PREFIX + File.separator + vendor + File.separator + System.mapLibraryName(libName)).replace("\\", "/");
+		log.info("dllpath:{}", path);
 		return path;
 	}
 }

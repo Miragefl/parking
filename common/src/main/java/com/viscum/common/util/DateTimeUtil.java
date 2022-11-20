@@ -73,4 +73,9 @@ public class DateTimeUtil {
 			return null;
 		}
 	}
+
+	public static void main(String[] args) {
+		String.valueOf(1);
+
+	}
 }

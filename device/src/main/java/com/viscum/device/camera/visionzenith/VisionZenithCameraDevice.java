@@ -7,8 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+/**
+ * 臻识相机设备操作
+ * @author viscum
+ */
 @Slf4j
-public class VisionZenithCameraDevice implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
+public class VisionZenithCameraDevice extends AbstractParkDevice implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
 
 	private Device device;
 

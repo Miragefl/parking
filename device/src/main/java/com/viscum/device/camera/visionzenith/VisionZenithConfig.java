@@ -2,6 +2,9 @@ package com.viscum.device.camera.visionzenith;
 
 import lombok.Data;
 
+/**
+ * 臻识相机配置
+ */
 @Data
 public class VisionZenithConfig {
 
@@ -9,6 +12,5 @@ public class VisionZenithConfig {
 	private int port;
 	private String name;
 	private String password;
-	private String rtspUrl;
 	private String volume;
 }

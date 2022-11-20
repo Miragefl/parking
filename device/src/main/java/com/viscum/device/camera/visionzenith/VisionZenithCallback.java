@@ -1,7 +1,7 @@
 package com.viscum.device.camera.visionzenith;
 
 import com.sun.jna.Pointer;
-import com.viscum.common.Constants;
+import com.viscum.common.CommonConstants;
 import com.viscum.common.enums.CarPlateColorEnum;
 import com.viscum.device.util.Helper;
 import com.viscum.model.IdentifyResult;
@@ -63,7 +63,7 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 		}
 
 		if (StringUtils.isBlank(plateNo) || plateNo.contains("_无_")) {
-			plateNo = Constants.NULL_CAR_PLATE_NO;
+			plateNo = CommonConstants.NULL_CAR_PLATE_NO;
 		}
 		logger.info("车牌bytes:{}", pResult.nColor);
 		CarPlateColorEnum color = getColor(pResult.nColor);
@@ -102,7 +102,7 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 			msg.setCarPlateColor(color);
 			msg.setCarPhoto(bigImage);
 			msg.setPlatePhoto(smallImage);
-			// device.dispatcher(msg, null, null, plateNo, color, carBodySize, time);
+			device.dispatcher(msg, null, null);
 		}
 	}
 
