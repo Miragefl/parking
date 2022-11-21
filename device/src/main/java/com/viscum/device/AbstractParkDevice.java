@@ -1,7 +1,6 @@
 package com.viscum.device;
 
 import com.viscum.model.IdentifyResult;
-import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractParkDevice {
 
@@ -12,12 +11,12 @@ public abstract class AbstractParkDevice {
 	 * @param carPhotoBase64 车辆识别图
 	 * @param platePhotoBase64 车牌识别图
 	 */
-	public void dispatcher(IdentifyResult msg, String carPhotoBase64 , String platePhotoBase64) {
+	public void dispatcher(IdentifyResult msg,  byte[] carPhoto , byte[] platePhoto) {
 
-		if (StringUtils.isNotBlank(carPhotoBase64)) {
+		if (null != carPhoto) {
 			// todo 保存车辆识别图
 		}
-		if (StringUtils.isNotBlank(platePhotoBase64)) {
+		if (null != platePhoto) {
 			// todo 保存车牌识别图
 		}
 

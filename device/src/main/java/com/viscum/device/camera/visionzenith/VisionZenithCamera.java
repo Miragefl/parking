@@ -12,21 +12,21 @@ import java.util.List;
  * @author viscum
  */
 @Slf4j
-public class VisionZenithCameraDevice extends AbstractParkDevice implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
+public class VisionZenithCamera extends AbstractParkDevice implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
 
 	private Device device;
 
-	private VisionZenithConfig config;
+	private VisionZenithCameraConfig config;
 
-	private VisionZenithCallback callback = new VisionZenithCallback();
+	private VisionZenithCameraCallback callback = new VisionZenithCameraCallback();
 
 	private JNADll instance = JNADll.INSTANCE;
 
 	private int handle;
 
-	public VisionZenithCameraDevice(Device device) {
+	public VisionZenithCamera(Device device) {
 		this.device = device;
-		config = JSON.parseObject(device.getDeviceParam(), VisionZenithConfig.class);
+		config = JSON.parseObject(device.getDeviceParam(), VisionZenithCameraConfig.class);
 		VisionZenithCameraManager.init();
 		handle = instance.VzLPRTcp_Open(config.getIp(), config.getPort(), config.getName(), config.getPassword());
 		callback.setDevice(this);
@@ -98,11 +98,11 @@ public class VisionZenithCameraDevice extends AbstractParkDevice implements Came
 		this.device = device;
 	}
 
-	public VisionZenithConfig getConfig() {
+	public VisionZenithCameraConfig getConfig() {
 		return config;
 	}
 
-	public void setConfig(VisionZenithConfig config) {
+	public void setConfig(VisionZenithCameraConfig config) {
 		this.config = config;
 	}
 }

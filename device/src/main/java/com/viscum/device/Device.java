@@ -10,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class Device {
+	private int id;
 	/**
 	 * 设备编号
 	 */

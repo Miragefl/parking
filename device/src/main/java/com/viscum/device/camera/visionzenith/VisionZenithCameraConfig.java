@@ -4,9 +4,11 @@ import lombok.Data;
 
 /**
  * 臻识相机配置
+ *
+ * @author viscum
  */
 @Data
-public class VisionZenithConfig {
+public class VisionZenithCameraConfig {
 
 	private String ip;
 	private int port;

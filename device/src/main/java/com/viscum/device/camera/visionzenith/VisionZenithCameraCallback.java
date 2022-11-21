@@ -15,11 +15,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBACK {
+/**
+ * 臻识相机回调
+ *
+ * @author viscum
+ */
+public class VisionZenithCameraCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBACK {
 
-	Logger logger = LoggerFactory.getLogger(VisionZenithCallback.class);
+	Logger logger = LoggerFactory.getLogger(VisionZenithCameraCallback.class);
 	JNADll instance = JNADll.INSTANCE;
-	private VisionZenithCameraDevice device;
+	private VisionZenithCamera device;
 
 	public CarPlateColorEnum getColor(int type) {
 		switch (type) {
@@ -131,11 +136,11 @@ public class VisionZenithCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_CALLBA
 		return sb.toString();
 	}
 
-	public VisionZenithCameraDevice getDevice() {
+	public VisionZenithCamera getDevice() {
 		return device;
 	}
 
-	public void setDevice(VisionZenithCameraDevice device) {
+	public void setDevice(VisionZenithCamera device) {
 		this.device = device;
 	}
 }

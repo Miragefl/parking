@@ -2,6 +2,9 @@ package com.viscum.device.camera.visionzenith;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 臻识相机设备管理类
+ */
 @Slf4j
 public class VisionZenithCameraManager {
 
