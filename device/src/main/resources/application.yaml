@@ -1,1 +1,4 @@
-
+custom:
+  config:
+    img:
+      savePath: /parkSys/imageStore

@@ -4,13 +4,14 @@ import lombok.Data;
 
 /**
  * led展示文本
- * @author fenglei
+ *
+ * @author viscum
  */
 @Data
 public class LedText {
 	private int line;
 	private String text;
 	private int color;
-	private String front;
+	private int front;
 	private int frontSize;
 }

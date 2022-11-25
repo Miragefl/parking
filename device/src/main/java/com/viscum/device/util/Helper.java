@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Helper {
 
@@ -21,7 +23,7 @@ public class Helper {
 
 	public static final String PARK_CODE = SpringEnvironmentUtil.getProperty(CommonConstants.CUSTOM_CONFIG + "parkCode").toString();
 
-	public static final String imagePath = SpringEnvironmentUtil.getPropertyOrDefault(CommonConstants.CUSTOM_CONFIG + "img.savePath", "~/parkSys/imageStore");
+	public static final String imagePath = SpringEnvironmentUtil.getPropertyOrDefault(CommonConstants.CUSTOM_CONFIG + "img.savePath", "/parkSys/imageStore");
 
 	public static String getImageFullPath(String plateNo, String color, LocalDateTime time) {
 		String storePath = getImageStoreRootPath(PARK_CODE) + File.separator + PARK_CODE
@@ -72,5 +74,15 @@ public class Helper {
 		String path = (ROOT_PATH + Platform.RESOURCE_PREFIX + File.separator + vendor + File.separator + System.mapLibraryName(libName)).replace("\\", "/");
 		log.info("dllpath:{}", path);
 		return path;
+	}
+
+	public static boolean isIpv4(String ipAddress) {
+		String ip = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\."
+				+ "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+				+ "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+				+ "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
+		Pattern pattern = Pattern.compile(ip);
+		Matcher matcher = pattern.matcher(ipAddress);
+		return matcher.matches();
 	}
 }
