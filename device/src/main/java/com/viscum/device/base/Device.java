@@ -1,4 +1,4 @@
-package com.viscum.device;
+package com.viscum.device.base;
 
 import com.viscum.common.enums.DeviceTypeEnum;
 import com.viscum.common.enums.PassagewayTypeEnum;

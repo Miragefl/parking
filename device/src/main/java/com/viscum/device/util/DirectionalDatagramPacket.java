@@ -1,7 +1,6 @@
-package com.viscum.device;
+package com.viscum.device.util;
 
 
-import com.viscum.device.util.Helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

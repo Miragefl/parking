@@ -1,4 +1,4 @@
-package com.viscum.device;
+package com.viscum.device.base;
 
 import com.viscum.model.IdentifyResult;
 
