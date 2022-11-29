@@ -2,7 +2,9 @@ package com.viscum.device.base;
 
 import java.util.List;
 
-public interface ShowFunction {
+public interface LedFunction {
+
+	int play(String playText);
 
 	int show(List<LedText> list);
 }

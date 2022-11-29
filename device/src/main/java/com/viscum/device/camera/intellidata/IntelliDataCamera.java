@@ -9,8 +9,7 @@ import com.viscum.device.base.CameraFunction;
 import com.viscum.device.base.Device;
 import com.viscum.device.base.GateFunction;
 import com.viscum.device.base.LedText;
-import com.viscum.device.base.PlayFunction;
-import com.viscum.device.base.ShowFunction;
+import com.viscum.device.base.LedFunction;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ import java.util.List;
  * @author viscum
  */
 public class IntelliDataCamera extends AbstractParkDevice
-		implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
+		implements CameraFunction, GateFunction {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(IntelliDataCamera.class);
 
@@ -30,22 +29,13 @@ public class IntelliDataCamera extends AbstractParkDevice
 	private IntelliDataCameraCallBack.IPlateCallback plateCallbackLinux = new IntelliDataCameraCallBack.PlateCallback();
 
 	public IntelliDataCamera(Device device) {
+		super(device);
 		this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), IntelliDataCameraConfig.class);
 		String ip = config.getIp();
 		IntelliDataCameraManager.ipDeviceMap.put(ip, this);
 		LOGGER.info("华夏相机设备Id {}", device.getDeviceNo());
 		mHandler = JNADll.INSTANCE.ICE_IPCSDK_Open(ip, plateCallbackLinux, device.getId());
-	}
-
-	@Override
-	public int play(String playText) {
-		throw new UnsupportedOperationException("华夏致信相机不支持");
-	}
-
-	@Override
-	public int show(List<LedText> list) {
-		throw new UnsupportedOperationException("华夏致信相机不支持");
 	}
 
 	@Override

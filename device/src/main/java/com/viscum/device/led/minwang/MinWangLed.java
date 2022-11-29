@@ -2,10 +2,7 @@ package com.viscum.device.led.minwang;
 
 import com.alibaba.fastjson2.JSON;
 import com.viscum.common.util.HexUtil;
-import com.viscum.device.base.Device;
-import com.viscum.device.base.PlayFunction;
-import com.viscum.device.base.ShowFunction;
-import com.viscum.device.base.LedText;
+import com.viscum.device.base.*;
 import com.viscum.device.util.DirectionalDatagramPacket;
 import com.viscum.device.util.UdpClient;
 import org.slf4j.Logger;
@@ -25,7 +22,7 @@ import java.util.function.Predicate;
  *
  * @author viscum
  */
-public class MinWangLed implements PlayFunction, ShowFunction {
+public class MinWangLed extends AbstractParkDevice implements LedFunction {
 
 	private static final Logger log = LoggerFactory.getLogger(MinWangLed.class);
 
@@ -35,8 +32,11 @@ public class MinWangLed implements PlayFunction, ShowFunction {
 
 	private final String playOptionsCache;
 
+	private Device device;
+
 
 	public MinWangLed(Device device) {
+		this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), MinWangLedConfig.class);
 		log.info("民望LED配置参数: {}", config);
 		packet = DirectionalDatagramPacket.getInstance(config.getIp(), config.getPort(), Integer.MAX_VALUE);

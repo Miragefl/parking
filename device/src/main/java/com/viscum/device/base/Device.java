@@ -48,4 +48,9 @@ public class Device {
 	 */
 	private String deviceParam;
 
+	/**
+	 * 设备品牌
+	 */
+	private String brand;
+
 }

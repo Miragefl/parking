@@ -3,10 +3,7 @@ package com.viscum.device.led.ouguan;
 
 import com.alibaba.fastjson2.JSON;
 import com.viscum.common.util.HexUtil;
-import com.viscum.device.base.Device;
-import com.viscum.device.base.LedText;
-import com.viscum.device.base.PlayFunction;
-import com.viscum.device.base.ShowFunction;
+import com.viscum.device.base.*;
 import com.viscum.device.util.TcpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +20,15 @@ import java.util.concurrent.TimeUnit;
  *
  * @author viscum
  */
-public class OuGuanLed implements ShowFunction, PlayFunction {
+public class OuGuanLed extends AbstractParkDevice implements  LedFunction {
 
 
 	private static final Logger log = LoggerFactory.getLogger(OuGuanLed.class);
 
-	private OuGuanLedConfig config;
+	private final OuGuanLedConfig config;
 
 	public OuGuanLed(Device device) {
+		super(device);
 		config = JSON.parseObject(device.getDeviceParam(), OuGuanLedConfig.class);
 	}
 

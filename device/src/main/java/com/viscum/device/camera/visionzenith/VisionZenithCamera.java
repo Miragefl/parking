@@ -12,7 +12,7 @@ import java.util.List;
  * @author viscum
  */
 @Slf4j
-public class VisionZenithCamera extends AbstractParkDevice implements CameraFunction, GateFunction, ShowFunction, PlayFunction {
+public class VisionZenithCamera extends AbstractParkDevice implements CameraFunction, GateFunction {
 
 	private Device device;
 
@@ -25,6 +25,7 @@ public class VisionZenithCamera extends AbstractParkDevice implements CameraFunc
 	private int handle;
 
 	public VisionZenithCamera(Device device) {
+		super(device);
 		this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), VisionZenithCameraConfig.class);
 		VisionZenithCameraManager.init();
@@ -63,16 +64,6 @@ public class VisionZenithCamera extends AbstractParkDevice implements CameraFunc
 
 	@Override
 	public int unlock() {
-		throw new UnsupportedOperationException("臻识相机不支持");
-	}
-
-	@Override
-	public int play(String playText) {
-		throw new UnsupportedOperationException("臻识相机不支持");
-	}
-
-	@Override
-	public int show(List<LedText> list) {
 		throw new UnsupportedOperationException("臻识相机不支持");
 	}
 
