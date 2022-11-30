@@ -2,3 +2,7 @@ custom:
   config:
     img:
       savePath: /parkSys/imageStore
+
+device:
+  load:
+    url: http://localhost:8080

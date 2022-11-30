@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.CompletableFuture;
+
 @Component
 public class DeviceInitCommandLineRunner implements CommandLineRunner {
 
@@ -15,6 +17,6 @@ public class DeviceInitCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		deviceContext.initDevice(deviceLoader);
+		CompletableFuture.runAsync(() -> deviceContext.initDevice(deviceLoader));
 	}
 }

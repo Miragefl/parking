@@ -11,8 +11,4 @@ import lombok.Data;
 public class IntelliDataCameraConfig {
     private String ip;
     private int port;
-    private String uname;
-    private String upassword;
-    private String rtspurl;
-
 }
