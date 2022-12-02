@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class IntelliDataCameraCallBack {
 
-	public static final List<String> noCarPlateList = Arrays.asList("无牌车", "");
+	public static final List<String> NO_CAR_PLATE_LIST = Arrays.asList("无牌车", "");
 
 	public interface IPlateCallback extends Callback {
 		public void ICE_IPCSDK_Plate(int param, String strIP, Pointer strNumber, Pointer strColor,
@@ -66,7 +66,7 @@ public class IntelliDataCameraCallBack {
 			log.info("华夏智信fPlateConfidence: {}", fPlateConfidence);
 			String _carPlateNo = strNumber.getString(0, "gbk");
 			String carPlateNo = _carPlateNo;
-			if (noCarPlateList.stream().anyMatch(e -> StringUtils.equals(e, _carPlateNo))) {
+			if (NO_CAR_PLATE_LIST.stream().anyMatch(e -> StringUtils.equals(e, _carPlateNo))) {
 				carPlateNo = CommonConstants.NULL_CAR_PLATE_NO;
 			}
 			int confidence = Math.round(fPlateConfidence);

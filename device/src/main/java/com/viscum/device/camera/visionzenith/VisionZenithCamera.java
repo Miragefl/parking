@@ -14,19 +14,19 @@ import java.util.List;
 @Slf4j
 public class VisionZenithCamera extends AbstractParkDevice implements CameraFunction, GateFunction {
 
-	private Device device;
+	// private Device device;
 
 	private VisionZenithCameraConfig config;
 
 	private VisionZenithCameraCallback callback = new VisionZenithCameraCallback();
 
-	private JNADll instance = JNADll.INSTANCE;
+	private final JNADll instance = JNADll.INSTANCE;
 
-	private int handle;
+	private final int handle;
 
 	public VisionZenithCamera(Device device) {
 		super(device);
-		this.device = device;
+		// this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), VisionZenithCameraConfig.class);
 		VisionZenithCameraManager.init();
 		handle = instance.VzLPRTcp_Open(config.getIp(), config.getPort(), config.getName(), config.getPassword());
@@ -80,14 +80,16 @@ public class VisionZenithCamera extends AbstractParkDevice implements CameraFunc
 		}
 		return result;
 	}
-
-	public Device getDevice() {
-		return device;
-	}
-
-	public void setDevice(Device device) {
-		this.device = device;
-	}
+	//
+	// @Override
+	// public Device getDevice() {
+	// 	return device;
+	// }
+	//
+	// @Override
+	// public void setDevice(Device device) {
+	// 	this.device = device;
+	// }
 
 	public VisionZenithCameraConfig getConfig() {
 		return config;

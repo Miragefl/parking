@@ -24,13 +24,13 @@ public class IntelliDataCamera extends AbstractParkDevice
 	public static final Logger LOGGER = LoggerFactory.getLogger(IntelliDataCamera.class);
 
 	private IntelliDataCameraConfig config;
-	private Device device;
+	// private Device device;
 	private int mHandler;
 	private IntelliDataCameraCallBack.IPlateCallback plateCallbackLinux = new IntelliDataCameraCallBack.PlateCallback();
 
 	public IntelliDataCamera(Device device) {
 		super(device);
-		this.device = device;
+		// this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), IntelliDataCameraConfig.class);
 		String ip = config.getIp();
 		IntelliDataCameraManager.ipDeviceMap.put(ip, this);
@@ -96,14 +96,6 @@ public class IntelliDataCamera extends AbstractParkDevice
 
 	public void setConfig(IntelliDataCameraConfig config) {
 		this.config = config;
-	}
-
-	public Device getDevice() {
-		return device;
-	}
-
-	public void setDevice(Device device) {
-		this.device = device;
 	}
 
 }

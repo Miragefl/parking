@@ -32,11 +32,12 @@ public class MinWangLed extends AbstractParkDevice implements LedFunction {
 
 	private final String playOptionsCache;
 
-	private Device device;
+	// private Device device;
 
 
 	public MinWangLed(Device device) {
-		this.device = device;
+		super(device);
+		// this.device = device;
 		config = JSON.parseObject(device.getDeviceParam(), MinWangLedConfig.class);
 		log.info("民望LED配置参数: {}", config);
 		packet = DirectionalDatagramPacket.getInstance(config.getIp(), config.getPort(), Integer.MAX_VALUE);

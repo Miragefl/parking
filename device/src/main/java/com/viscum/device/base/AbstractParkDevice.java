@@ -30,4 +30,11 @@ public abstract class AbstractParkDevice implements ParkDevice {
 
 	}
 
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
 }
