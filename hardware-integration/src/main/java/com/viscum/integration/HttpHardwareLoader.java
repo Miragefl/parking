@@ -3,7 +3,7 @@ package com.viscum.integration;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viscum.common.util.HttpUtil;
-import com.viscum.integration.base.Hardware;
+import com.viscum.model.Hardware;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class HttpHardwareLoader implements HardwareLoader {
 
-	@Value("${device.load.url}")
+	@Value("${hardware.load.url}")
 	private String url;
 
 	@Override

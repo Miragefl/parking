@@ -5,6 +5,7 @@ import com.viscum.common.util.HexUtil;
 import com.viscum.integration.base.*;
 import com.viscum.integration.util.DirectionalDatagramPacket;
 import com.viscum.integration.util.UdpClient;
+import com.viscum.model.Hardware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +39,7 @@ public class MinWangLed extends AbstractParkHardware implements LedFunction {
 	public MinWangLed(Hardware hardware) {
 		super(hardware);
 		// this.device = device;
-		config = JSON.parseObject(hardware.getDeviceParam(), MinWangLedConfig.class);
+		config = JSON.parseObject(hardware.getHwParam(), MinWangLedConfig.class);
 		log.info("民望LED配置参数: {}", config);
 		packet = DirectionalDatagramPacket.getInstance(config.getIp(), config.getPort(), Integer.MAX_VALUE);
 		playOptionsCache = buildPlayOptionsCache();

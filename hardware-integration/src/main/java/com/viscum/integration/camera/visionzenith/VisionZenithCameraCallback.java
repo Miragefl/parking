@@ -102,7 +102,7 @@ public class VisionZenithCameraCallback implements JNADll.VZLPRC_TCP_PLATE_INFO_
 			}
 			IdentifyResult msg = new IdentifyResult();
 			msg.setParkingTime(LocalDateTime.now());
-			msg.setPassagewayCode(device.getDevice().getPassagewayCode());
+			msg.setPassagewayCode(device.getDevice().getGatewayCode());
 			msg.setCarPlateNo(plateNo);
 			msg.setCarPlateColor(color);
 			msg.setCarPhoto(bigImage);

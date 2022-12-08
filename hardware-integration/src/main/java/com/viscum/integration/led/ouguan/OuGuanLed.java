@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.JSON;
 import com.viscum.common.util.HexUtil;
 import com.viscum.integration.base.*;
 import com.viscum.integration.util.TcpClient;
+import com.viscum.model.Hardware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ public class OuGuanLed extends AbstractParkHardware implements  LedFunction {
 
 	public OuGuanLed(Hardware hardware) {
 		super(hardware);
-		config = JSON.parseObject(hardware.getDeviceParam(), OuGuanLedConfig.class);
+		config = JSON.parseObject(hardware.getHwParam(), OuGuanLedConfig.class);
 	}
 
 	@Override

@@ -18,6 +18,7 @@
         <module>hardware-integration</module>
         <module>common</module>
         <module>model</module>
+        <module>parking-management</module>
     </modules>
 
     <properties>

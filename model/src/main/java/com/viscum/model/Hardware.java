@@ -1,7 +1,7 @@
-package com.viscum.integration.base;
+package com.viscum.model;
 
-import com.viscum.common.enums.DeviceTypeEnum;
-import com.viscum.common.enums.PassagewayTypeEnum;
+import com.viscum.common.enums.HwTypeEnum;
+import com.viscum.common.enums.GatewayTypeEnum;
 import lombok.Data;
 
 /**
@@ -14,7 +14,7 @@ public class Hardware {
 	/**
 	 * 设备编号
 	 */
-	private String deviceNo;
+	private String hwCode;
 	/**
 	 * 停车场编号
 	 */
@@ -26,27 +26,27 @@ public class Hardware {
 	/**
 	 * 通道编号
 	 */
-	private String passagewayCode;
+	private String gatewayCode;
 	/**
 	 * 通道名称
 	 */
-	private String passagewayName;
+	private String gatewayName;
 	/**
 	 * 通道类型
 	 */
-	private PassagewayTypeEnum passagewayType;
+	private GatewayTypeEnum gatewayType;
 	/**
 	 * 设备名称
 	 */
-	private String deviceName;
+	private String hwName;
 	/**
 	 * 设备类型
 	 */
-	private DeviceTypeEnum deviceType;
+	private HwTypeEnum hwType;
 	/**
 	 * 设备参数
 	 */
-	private String deviceParam;
+	private String hwParam;
 
 	/**
 	 * 设备品牌

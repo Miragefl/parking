@@ -1,6 +1,6 @@
 package com.viscum.integration.camera.intellidata;
 
-import com.viscum.integration.base.Hardware;
+import com.viscum.model.Hardware;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +27,10 @@ public class IntelliDataCamera extends AbstractParkHardware
 	public IntelliDataCamera(Hardware hardware) {
 		super(hardware);
 		// this.device = device;
-		config = JSON.parseObject(hardware.getDeviceParam(), IntelliDataCameraConfig.class);
+		config = JSON.parseObject(hardware.getHwParam(), IntelliDataCameraConfig.class);
 		String ip = config.getIp();
 		IntelliDataCameraManager.ipDeviceMap.put(ip, this);
-		LOGGER.info("华夏相机设备Id {}", hardware.getDeviceNo());
+		LOGGER.info("华夏相机设备Id {}", hardware.getHwCode());
 		mHandler = JNADll.INSTANCE.ICE_IPCSDK_Open(ip, plateCallbackLinux, hardware.getId());
 	}
 

@@ -3,6 +3,7 @@ package com.viscum.integration.camera.visionzenith;
 import com.alibaba.fastjson2.JSON;
 import com.sun.jna.Pointer;
 import com.viscum.integration.base.*;
+import com.viscum.model.Hardware;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,7 +26,7 @@ public class VisionZenithCamera extends AbstractParkHardware implements CameraFu
 	public VisionZenithCamera(Hardware hardware) {
 		super(hardware);
 		// this.device = device;
-		config = JSON.parseObject(hardware.getDeviceParam(), VisionZenithCameraConfig.class);
+		config = JSON.parseObject(hardware.getHwParam(), VisionZenithCameraConfig.class);
 		VisionZenithCameraManager.init();
 		handle = instance.VzLPRTcp_Open(config.getIp(), config.getPort(), config.getName(), config.getPassword());
 		callback.setDevice(this);

@@ -1,6 +1,6 @@
 package com.viscum.common.enums;
 
-public enum PassagewayTypeEnum {
+public enum GatewayTypeEnum {
 
 	IN,
 	OUT;

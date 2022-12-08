@@ -3,6 +3,6 @@ custom:
     img:
       savePath: /parkSys/imageStore
 
-device:
+hardware:
   load:
     url: http://localhost:8080

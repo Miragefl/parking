@@ -1,6 +1,6 @@
 package com.viscum.common.enums;
 
-public enum DeviceTypeEnum {
+public enum HwTypeEnum {
 
 	/***
 	 * led显示屏

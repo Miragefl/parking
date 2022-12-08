@@ -1,5 +1,6 @@
 package com.viscum.integration.base;
 
+import com.viscum.model.Hardware;
 import com.viscum.model.IdentifyResult;
 
 public abstract class AbstractParkHardware implements ParkHardware {

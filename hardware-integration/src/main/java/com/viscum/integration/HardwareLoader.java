@@ -1,6 +1,6 @@
 package com.viscum.integration;
 
-import com.viscum.integration.base.Hardware;
+import com.viscum.model.Hardware;
 
 import java.util.List;
 

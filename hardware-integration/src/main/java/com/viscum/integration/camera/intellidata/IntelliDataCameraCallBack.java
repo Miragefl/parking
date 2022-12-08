@@ -83,7 +83,7 @@ public class IntelliDataCameraCallBack {
 			}
 			IdentifyResult msg = new IdentifyResult();
 			msg.setParkingTime(LocalDateTime.now());
-			msg.setPassagewayCode(device.getDevice().getPassagewayCode());
+			msg.setPassagewayCode(device.getDevice().getGatewayCode());
 			msg.setCarPlateNo(carPlateNo);
 			msg.setCarPlateColor(carPlateColor);
 			device.dispatcher(msg, carPhoto, platePhoto);
