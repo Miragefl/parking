@@ -1,4 +1,4 @@
-package src.main.com.viscum;
+package com.viscum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

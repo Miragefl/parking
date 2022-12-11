@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class IdentifyResult {
 
-	private String parkingCode;
 	private String passagewayCode;
-	private String passagewayType;
 	private String carPhoto;
 	private String platePhoto;
 	private CarPlateColorEnum carPlateColor;
